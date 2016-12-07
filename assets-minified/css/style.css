@@ -1,0 +1,26 @@
+html
+    {
+    overflow-y: hidden;
+    }
+  html body
+    {
+    height: 100%;
+    overflow: auto;
+    }
+.header-recibo {
+    background-color: #002040 !important;
+    color: white;
+}
+.flotante img{
+    width: 50px;
+    height: 50px;    
+}
+.flotante {
+    right:20px;
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+}
+.encabezado {
+    text-align: center;
+}
