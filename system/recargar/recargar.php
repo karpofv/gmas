@@ -563,4 +563,78 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_desde>='$desde'
         echo "</tbody>";
     }
 }
+//-----------------------------------------------------
+// Agrega las fechas de inspeccion al plan de siembra
+//-------------------------------------------------------
+if ($opcion == 'agginspeccion') {
+    $codigo = $_POST['codigo'];
+    $vertice = $_POST['vertice'];
+    $fecha = $_POST['fecha'];
+    $insert = paraTodos::arrayInserte("vertins_vergcodigo, vertins_vertcodigo, vertins_fechaains", "vertice_inspeccion", "'$codigo', '$vertice', '$fecha'");
+    $consulta = paraTodos::arrayConsulta("*", "vertice_inspeccion vi, vertice v"," v.vert_codigo=vi.vertins_vertcodigo and vi.vertins_vergcodigo=$codigo");
+    foreach ($consulta as $row) {
+        ?>
+        <tr class="itemtr">
+            <td><?php echo $row['vert_descripcion']; ?></td>
+            <td><?php echo $row['vertins_fechaains']; ?></td>
+            <td><a href='javascript: void(0);' onclick="$.ajax({
+                            type: 'POST',
+                            url: 'accion.php',
+                            data: {
+                                opcion: 'deletefechains',
+                                codigoins: <?php echo $row['vertins_codigo']; ?>,
+                                codigo: <?php  echo $codigo;?>,
+                                ver: 1,
+                                dmn: 352
+                            },
+                            success: function (html) {
+                                $('#tbasigfechains').html(html)                
+                            },
+                            error: function (xhr, msg, excep) {
+                                alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
+                            }
+                        });
+                        return false"><i class="glyph-icon tooltip-button icon-remove icon-xs"></i></a> 
+            </td>
+        </tr>
+        <?php
+    }
+}
+//-----------------------------------------------------
+// Elimina las fechas de inspeccion al plan de siembra seleccionado
+//-------------------------------------------------------
+if ($opcion == 'deletefechains') {
+    $codigo = $_POST['codigo'];
+    $codigoins = $_POST['codigoins'];
+    $insert = paraTodos::arrayDelete("vertins_codigo=$codigoins", "vertice_inspeccion");
+    $consulta = paraTodos::arrayConsulta("*", "vertice_inspeccion vi, vertice v"," v.vert_codigo=vi.vertins_vertcodigo and vi.vertins_vergcodigo=$codigo");
+    foreach ($consulta as $row) {
+        ?>
+        <tr class="itemtr">
+            <td><?php echo $row['vert_descripcion']; ?></td>
+            <td><?php echo $row['vertins_fechaains']; ?></td>
+            <td><a href='javascript: void(0);' onclick="
+                $.ajax({
+                            type: 'POST',
+                            url: 'accion.php',
+                            data: {
+                                opcion: 'deletefechains',
+                                codigoins: <?php echo $row['vertins_codigo']; ?>,
+                                codigo: <?php  echo $codigo;?>,
+                                ver: 1,
+                                dmn: 352
+                            },
+                            success: function (html) {
+                                $('#tbasigfechains').html(html)                
+                            },
+                            error: function (xhr, msg, excep) {
+                                alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
+                            }
+                        });
+                        return false"><i class="glyph-icon tooltip-button icon-remove icon-xs"></i></a> 
+            </td>
+        </tr>
+        <?php
+    }
+}
 ?>

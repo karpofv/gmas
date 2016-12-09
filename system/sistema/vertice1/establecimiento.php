@@ -90,7 +90,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="step-1">
                     <div class="content-box">
-                        <div class="panel-heading"> <a href="#"><h4 id="datosgen"><b>Establecimientos</b></h4></a> </div>
+                        <h3 class="content-box-header bg-azul">Establecimiento</h3>
                         <div class="col-xs-12">
                             <?php
                             if ($editarrt!='') {
@@ -240,7 +240,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="step-1">
                     <div class="content-box">
-                        <div class="panel-heading"> <a href="#"><h4 id="establecreg"><b>Establecimientos Registrados</b></h4></a> </div>
+                        <h3 class="content-box-header bg-azul">Establecimientos Registrados</h3>
                         <div class="col-xs-12">
                             <table id="tbestab" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="dynamic-table-example-1_info">
                                 <thead>
@@ -314,7 +314,11 @@
     </div>
     <script>
         $(document).ready(function() {
-          $('#tbestab').DataTable();
+          $('#tbestab').DataTable({
+              "language": {
+                  "url": "<?php echo $ruta_base;?>assets-minified/widgets/datatable/Spanish.json"
+              }
+          });
         });
         //+---------------------------------------------
         //Busca los municioios dependiendo del estado

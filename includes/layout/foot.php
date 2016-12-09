@@ -112,7 +112,8 @@
     <!-- Theme layout
 <script type="text/javascript" src="modelo/chat/js/jquery.js"></script>  -->
 <!--<script type="text/javascript" src="<?php echo $ruta_base; ?>modelo/chat/js/chat.js"></script>-->
-<script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/themes/supina/js/layout.js"></script>
+    <script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/themes/supina/js/layout.js"></script>
+    <script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/widgets/modal/modal.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         $(window).load(function(){

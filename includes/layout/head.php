@@ -40,5 +40,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $ruta_base; ?>assets-minified/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $ruta_base; ?>assets-minified/demo-widgets.css">
     <script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/js-core/jquery-1.12.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $ruta_base; ?>assets-minified/widgets/modal/modal.css">    
 </head>
 <body id="main_container">

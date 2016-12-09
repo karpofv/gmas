@@ -116,8 +116,9 @@ class paraTodos
     |--------------------------------------------------------------------------
     */
         $conexion = new Conexion();
+        $conectar = $conexion->obtenerConexionMy();
         $sql = ("SELECT $campos FROM $tablas WHERE $consultas");
-        $preparar = $conexion->prepare($sql);
+        $preparar = $conectar->prepare($sql);
         $preparar->execute();
         $resultado = $preparar->rowCount();
         return $resultado;

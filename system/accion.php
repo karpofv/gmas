@@ -1,7 +1,7 @@
   <?php
   error_reporting(E_ALL);
-  ini_set('display_errors', false);
-  ini_set('display_startup_errors', false);
+  ini_set('display_errors', true);
+  ini_set('display_startup_errors', true);
 
   require('../includes/conf/auth.php');
 
@@ -24,6 +24,7 @@
   include_once '../includes/validation.php';
   include_once('modelo/menu/class.menu.php');
   include_once('modelo/class.establecimiento.php');
+  include_once('modelo/class.inspecciones.php');
   include_once '../includes/combos.php';
 
 
@@ -120,6 +121,14 @@
       include_once($conexf);
   }
   ?>
-  <script type="text/javascript">
-  var cargando = '<center><img style="margin-top: 10px;height:30px;width:30px;" src="../assets-minified/images/spinner/loader-dark.gif" border="0"> Cargando...</center>';
-  </script>
+	<script type="text/javascript">    
+	 $.ajax({
+          type: 'POST',
+          url:  'recargar.php', 
+          data: '&dmn=354&ver=9&act=2',
+          success: function(html) {$('#notif').html(html);}
+        });        
+	</script>
+    <script type="text/javascript">
+        var cargando = '<center><img style="margin-top: 10px;height:30px;width:30px;" src="../assets-minified/images/spinner/loader-dark.gif" border="0"> Cargando...</center>';
+    </script>

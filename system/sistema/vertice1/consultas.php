@@ -6,9 +6,6 @@
     if ($tipo =='Plan de Siembra'){
         $vertp_tipo = "SIEMBRA";
     }
-    if ($tipo =='Plan de Cosecha'){
-        $vertp_tipo = "COSECHA";
-    }
     $grafico = paraTodos::arrayConsulta("rut_descripcion, sum(vertp_hasemb) as vertp_hasemb, sum(vertp_hsem) as vertp_hsem ", "vertice_gen vg, vertice_produccion vp, rubro_tipo rt, rubros r
 left join rubro_clase rc on rc.ruc_rucodigo=r.ru_codigo", "vg.verg_codigo=vp.vertp_vergcodigo and vp.vertp_rubro=r.ru_codigo and vp.vertp_tiprubro=rt.rut_codigo
 and ru_clasificacion='VEGETAL' and vertp_tipo='$vertp_tipo' and verg_desde>='$_POST[desde]' and verg_hasta<='$_POST[hasta]' and verg_vertice='1' group by rut_descripcion");
@@ -20,7 +17,7 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='$vertp_tipo' and verg_desde>='$_P
     <div class="panel panel-default">
         <div class="panel-body" id="panelgen">
                 <div class="content-box">
-                    <h3 class="content-box-header bg-default">Consultas y Reportes</h3>
+                    <h3 class="content-box-header bg-azul">Consultas y Reportes</h3>
                     <form id="frmbuscar" class="form-horizontal" onsubmit="$.ajax({
                                 type: 'POST',
                                 url: 'accion.php',
@@ -41,7 +38,14 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='$vertp_tipo' and verg_desde>='$_P
                         <select id="tipoconsul" class="form-control col-xs-12">
                             <option>Seleccione Tipo de Consulta</option>
                             <option>Plan de Siembra</option>
-                            <option>Plan de Cosecha</option>
+                            <?php
+                                $ins = paraTodos::arrayConsultanum("*", "vertice_inspeccion vi", " vi.vertins_vertcodigo=1");
+                                if ($ins>0){
+                            ?>
+                                <option>Inspecciones</option>
+                            <?php
+                                }
+                            ?>
                             <option>Otras Actividades</option>
                         </select>
                         <div class="col-sm-4">
@@ -90,6 +94,14 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='$vertp_tipo' and verg_desde>='$_P
 <th class="sorting_asc" tabindex="0" aria-controls="dynamic-table-example-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending" style="width: 176px;">Editar<i class="glyph-icon"></i></th>
                             <?php
                             }
+                            if ($_POST['tipo']=="Inspecciones") {
+                            ?>
+<th class="sorting_asc" tabindex="0" aria-controls="dynamic-table-example-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending" style="width: 176px;">Establecimiento<i class="glyph-icon"></i></th>                            
+<th class="sorting_asc" tabindex="0" aria-controls="dynamic-table-example-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending" style="width: 176px;">Fecha a Inspeccionar<i class="glyph-icon"></i></th>                            
+<th class="sorting_asc" tabindex="0" aria-controls="dynamic-table-example-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending" style="width: 176px;">Fecha de Inspección<i class="glyph-icon"></i></th>                            
+<th class="sorting_asc" tabindex="0" aria-controls="dynamic-table-example-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending" style="width: 176px;">Observaciones<i class="glyph-icon"></i></th>
+                            <?php
+                            }
                             ?>
                         </tr>
                     </thead>
@@ -130,6 +142,19 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_hasta<='$_POST[
                                 }
 							}); return false" href="">Editar</a>
                             </td>
+                        </tr>                            
+                            <?php                                    
+                                }
+                            }
+                            if ($_POST['tipo']=="Inspecciones") {
+                                $consulta = paraTodos::arrayConsulta("*", "vertice_inspeccion vi, vertice_gen vg, establecimiento e", "vi.vertins_vertcodigo=1 and vi.vertins_vergcodigo=vg.verg_codigo and vg.verg_establec=e.est_codigo and vi.vertins_fechaains>='$_POST[desde]' and vi.vertins_fechaains<='$_POST[hasta]'");
+                                foreach($consulta as $rowconsul){
+                            ?>
+                        <tr class="gradeA even" role="row">                        
+                            <td><a href="javascript:void(0)"><?php echo $rowconsul['est_nombre']?></a></td>
+                            <td><?php echo $rowconsul['vertins_fechaains']?></td>
+                            <td><?php echo $rowconsul['vertins_fechains']?></td>
+                            <td><?php echo $rowconsul['']?></td>                            
                         </tr>                            
                             <?php                                    
                                 }
@@ -215,8 +240,14 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='COSECHA' and verg_desde>='$_POST[
                             ?>
                     </tbody>
                 </table>
+            <?php
+                if ($tipo !='Inspecciones'){
+            ?>
             <div id="grafproduc" class="col-sm-6"></div>
             <div id="grafproducr" class="col-sm-6"></div>
+            <?php
+                }
+            ?>
         </div>
     </div>        
     <script type="text/javascript" src="<?php echo $ruta_base;?>assets-minified/widgets/datatable/datatable.js"></script>
@@ -226,7 +257,7 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='COSECHA' and verg_desde>='$_POST[
             $('#tbconsul').dataTable({
                 "language": {
                     "url": "<?php echo $ruta_base;?>assets-minified/widgets/datatable/Spanish.json"
-                }                
+                }
             });
     </script>
     <script type="text/javascript">
