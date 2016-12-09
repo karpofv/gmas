@@ -15,22 +15,22 @@
     $dmn = $_POST['dmn'];
     $mostrar = $_POST['mostrar'];
     $editarrt = $_POST['editarrt'];
-	/*Se verifican los permisos del usuario*/
-    if ($step == '1'){
-        if ($accPermisos['S']==1 AND $accPermisos['I']==1 AND $accPermisos['U']==1 AND $accPermisos['D']==1) {
+    /*Se verifican los permisos del usuario*/
+    if ($step == '1') {
+        if ($accPermisos['S']==1 and $accPermisos['I']==1 and $accPermisos['U']==1 and $accPermisos['D']==1) {
             /*GUARDAR -----------Se verifica que $editarrt=="" y las variables no  se encuentren vacias para proceder a guardar  */
-            if ($mostrar == "" and $editarrt=="" and $desde!="" and $hasta!=""){
+            if ($mostrar == "" and $editarrt=="" and $desde!="" and $hasta!="") {
                 $insert = paraTodos::arrayInserte("verg_desde, verg_hasta, verg_observacion, verg_vertice", "vertice_gen", "'$desde', '$hasta', '$observ', '1'");
                 $consul_codigo = paraTodos::arrayConsulta("max(verg_codigo) as codigo", "vertice_gen", "verg_desde='$desde' and verg_hasta='$hasta'");
-                foreach ($consul_codigo as $rowcod){
+                foreach ($consul_codigo as $rowcod) {
                     $cod = $rowcod['codigo'];
                 }
                 $insert = paraTodos::arrayInserte("vertdes_vergcodigo, vertdes_descrip", "vertice_descripcion", "'$cod', '$descrip'");
                 $consul_codigo = paraTodos::arrayConsulta("vertdes_codigo", "vertice_descripcion", "vertdes_vergcodigo=$cod");
-                foreach ($consul_codigo as $rowcod){
+                foreach ($consul_codigo as $rowcod) {
                     $coddes = $rowcod['vertdes_codigo'];
-                }                
-                if ($insertar) {
+                }
+                if ($insert) {
                     echo "<ul class='noty-wrapper' id='noty_top'>
                         <li class='bg-green' style='cursor: pointer;'>
                             <div class='noty_bar' id='noty_454273614135399300'>
@@ -74,7 +74,7 @@
                                                                 },
                                                                 success: function(html) {
                                                                     $('#tbasiganali').html(html);
-                                                                }, 
+                                                                },
                                                                 error: function(xhr,msg,excep) {
                                                                     alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
                                                                 }
@@ -96,7 +96,7 @@
                                 url: 'accion.php',
                                 data: {
 									desde: $('#desde').val(),
-									hasta: $('#hasta').val(),                                              
+									hasta: $('#hasta').val(),
 									observacion: $('#observacion').val(),
 									descripcion: $('#descripcion').val(),
 									step: 1,
@@ -123,8 +123,8 @@
                                         </div>
                                         <div class="col-sm-4 col-md-3">
                                             <label>Hasta</label>
-                                            <input type="date" id="hasta" class="form-control" placeholder="dd/mm/aaaa" required value="<?php echo $hasta;?>"> 
-                                        </div>                                        
+                                            <input type="date" id="hasta" class="form-control" placeholder="dd/mm/aaaa" required value="<?php echo $hasta;?>">
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
@@ -158,7 +158,7 @@
                                             <select id="entes" class="form-control">
                                                 <option value="0">Seleccione los Entes que participaron en la Acción</option>
                                                 <?php
-                                                combos::CombosSelect("1", "0","vert_entecodigo,ente_descrip", "entes_eje ee, vertices_ente ve", "vert_entecodigo", "ente_descrip", "ve.vert_entecodigo=ee.ente_codigo and ve.vert_vertice=1");
+                                                combos::CombosSelect("1", "0", "vert_entecodigo,ente_descrip", "entes_eje ee, vertices_ente ve", "vert_entecodigo", "ente_descrip", "ve.vert_entecodigo=ee.ente_codigo and ve.vert_vertice=1");
                                             ?>
                                             </select>
                                         </div>
@@ -330,7 +330,7 @@
                                                         error: function(xhr,msg,excep) {
                                                             alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
                                                         }
-                                                    });                                                                           
+                                                    });
                                                 },
                                                 error: function(xhr,msg,excep) {
                                                     alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
@@ -356,17 +356,18 @@
                                                 <?php
                                                     $consulta = paraTodos::arrayConsulta("vd.vertdes_descrip, vr.vertres_resultado, va.verta_explicacion, va.verta_reflexion, va.verta_accion", "vertice_gen vg, vertice_descripcion vd, vertice_resultados vr, vertice_analisis va", "vg.verg_codigo=vd.vertdes_vergcodigo and vr.vertres_vertdescodigo=vd.vertdes_codigo and va.verta_verpcodigo=vr.vertres_codigo
 and vg.verg_codigo=$cod");
-                                                    foreach($consulta as $row){
-                                                ?>
+                                                    foreach ($consulta as $row) {
+                                                        ?>
                                                         <tr class="itemtr">
-                                                            <td><?php echo $row['vertdes_descrip'];?></td>
-                                                            <td><?php echo $row['vertres_resultado'];?></td>
-                                                            <td><?php echo $row['verta_explicacion'];?></td>
-                                                            <td><?php echo $row['verta_reflexion'];?></td>
-                                                            <td><?php echo $row['verta_accion'];?></td>
+                                                            <td><?php echo $row['vertdes_descrip']; ?></td>
+                                                            <td><?php echo $row['vertres_resultado']; ?></td>
+                                                            <td><?php echo $row['verta_explicacion']; ?></td>
+                                                            <td><?php echo $row['verta_reflexion']; ?></td>
+                                                            <td><?php echo $row['verta_accion']; ?></td>
                                                             <td>ELIMINAR</td>
                                                         </tr>
                                                 <?php
+
                                                     }
                                                 ?>
                                             </tbody>
@@ -389,11 +390,11 @@ and vg.verg_codigo=$cod");
         $("#tab-rub").css("display", "none");
         $("#tab-analisis").css("display", "none");
         $("#tab-entes").css("display", "none");
-        localStorage.setItem("count", "0");        
-        var count = localStorage.getItem('count');        
+        localStorage.setItem("count", "0");
+        var count = localStorage.getItem('count');
         //+---------------------------------------------
         //Busca los Tipos de Rubro depende al rubro seleccionado
-        //-----------------------------------------------        
+        //-----------------------------------------------
         $("#rubros").change(function(){
             $.ajax({
                 type: 'POST',
@@ -437,7 +438,7 @@ and vg.verg_codigo=$cod");
         });
         //+---------------------------------------------
         //Busca las Clases de Rubro depende al tipo de rubro seleccionado
-        //-----------------------------------------------        
+        //-----------------------------------------------
         function agganalisis(codprod){
             $("#analisis").removeClass("collapse");
             $("#codproduc").val(codprod);

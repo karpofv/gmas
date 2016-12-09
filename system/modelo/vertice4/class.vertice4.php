@@ -11,6 +11,16 @@
  *
  * @author anonymous
  */
-class Vertice4 {
-    //put your code here
+class Vertice4
+{
+    public function totalInspecciones()
+    {
+        $conexion = new Conexion;
+        $conectar = $conexion->obtenerConexionMy();
+        $sql = "SELECT * FROM inspeccion";
+        $preparar = $conectar->prepare($sql);
+        $preparar->execute();
+        $resultado = $preparar->fetch(PDO::FETCH_ASSOC);
+        return $resultado;
+    }
 }

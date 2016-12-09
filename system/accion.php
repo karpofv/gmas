@@ -26,6 +26,7 @@
   include_once('modelo/class.establecimiento.php');
   include_once('modelo/class.inspecciones.php');
   include_once '../includes/combos.php';
+  include_once('modelo/vertice4/class.vertice4.php');
 
 
 
@@ -54,13 +55,14 @@
   }
 
   //$ruta = "http://www.unellez.edu.ve/portal/servicios/siproma/sistema/fotos/".$_SESSION[ci].".jpg";
-  $urlexists = paraTodos::url_exists($ruta);
-
+  //$urlexists = paraTodos::url_exists($ruta);
+  //
   if ($urlexists == 'true') {
       //  $FOTO = "http://www.unellez.edu.ve/portal/servicios/siproma/sistema/fotos/".$_SESSION[ci].".jpg";
   } else {
       $FOTO="../assets-minified/images/icono_perfil.png";
   }
+
   $act=$_POST[act];
   if ($act=='') {
       $act=$_GET[act];

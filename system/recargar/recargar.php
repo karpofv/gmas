@@ -12,7 +12,7 @@ if ($opcion == 'aggresult') {
     $vertice = $_POST['vertice'];
     $result = $_POST['result'];
     $insert = paraTodos::arrayInserte("vertres_vertdescodigo, vertres_resultado", "vertice_resultados", "'$vertice', '$result'");
-    $consulta = paraTodos::arrayConsulta("*", "vertice_descripcion vd, vertice_resultados vr"," vr.vertres_vertdescodigo=vd.vertdes_codigo and vd.vertdes_codigo=$vertice");
+    $consulta = paraTodos::arrayConsulta("*", "vertice_descripcion vd, vertice_resultados vr", " vr.vertres_vertdescodigo=vd.vertdes_codigo and vd.vertdes_codigo=$vertice");
     foreach ($consulta as $row) {
         ?>
         <tr class="itemtr">
@@ -45,10 +45,11 @@ if ($opcion == 'aggresult') {
                                 alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
                             }
                         });
-                        return false">Eliminar</a> 
+                        return false">Eliminar</a>
             </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -57,7 +58,7 @@ if ($opcion == 'aggresult') {
 if ($opcion == 'tbanalisisgen') {
     $codigo = $_POST['codigo'];
     $count = $count - 1;
-    $consulta = paraTodos::arrayConsulta("*", "vertice_descripcion vd, vertice_resultados vr"," vr.vertres_vertdescodigo=vd.vertdes_codigo and vd.vertdes_codigo=$codigo");
+    $consulta = paraTodos::arrayConsulta("*", "vertice_descripcion vd, vertice_resultados vr", " vr.vertres_vertdescodigo=vd.vertdes_codigo and vd.vertdes_codigo=$codigo");
     foreach ($consulta as $row) {
         ?>
         <tr class="itemtr">
@@ -70,6 +71,7 @@ if ($opcion == 'tbanalisisgen') {
             <td><a href='javascript: void(0);' onclick="agganalisis(<?php echo $row['vertres_codigo']; ?>); return false">Agregar</a> </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -79,7 +81,7 @@ if ($opcion == 'deleteresult') {
     $codigo = $_POST['codigo'];
     $vertice = $_POST['vertice'];
     paraTodos::arrayDelete("vertres_codigo='$codigo'", "vertice_resultados");
-    $consulta = paraTodos::arrayConsulta("*", "vertice_descripcion vd, vertice_resultados vr"," vr.vertres_vertdescodigo=vd.vertdes_codigo and vd.vertdes_codigo=$vertice");
+    $consulta = paraTodos::arrayConsulta("*", "vertice_descripcion vd, vertice_resultados vr", " vr.vertres_vertdescodigo=vd.vertdes_codigo and vd.vertdes_codigo=$vertice");
     foreach ($consulta as $row) {
         ?>
         <tr class="itemtr">
@@ -94,7 +96,7 @@ if ($opcion == 'deleteresult') {
                             url: 'accion.php',
                             data: {
                                 opcion: 'deleteresult',
-                                vertice: <?php echo $row['vertdes_codigo']; ?>,                
+                                vertice: <?php echo $row['vertdes_codigo']; ?>,
                                 codigo: <?php echo $row['vertres_codigo']; ?>,
                                 ver: 1,
                                 dmn: 352
@@ -115,6 +117,7 @@ if ($opcion == 'deleteresult') {
                         return false">Eliminar</a> </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -163,6 +166,7 @@ if ($opcion == 'aggentes') {
                         return false">Eliminar</a> </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -200,6 +204,7 @@ if ($opcion == 'deleteentes') {
             </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -222,14 +227,14 @@ if ($opcion == 'acttabanalisisgen') {
     $descrip = $_POST['descrip'];
     $consulta = paraTodos::arrayConsulta("verta_codigo,vertdes_codigo, vd.vertdes_descrip, vr.vertres_resultado, va.verta_explicacion, va.verta_reflexion, va.verta_accion", "vertice_gen vg, vertice_descripcion vd, vertice_resultados vr, vertice_analisis va", "vg.verg_codigo=vd.vertdes_vergcodigo and vr.vertres_vertdescodigo=vd.vertdes_codigo and va.verta_verpcodigo=vr.vertres_codigo
 and vg.verg_codigo=$descrip");
-    foreach($consulta as $row){
-?>
+    foreach ($consulta as $row) {
+        ?>
         <tr class="itemtr">
-            <td><?php echo $row['vertdes_descrip'];?></td>
-            <td><?php echo $row['vertres_resultado'];?></td>
-            <td><?php echo $row['verta_explicacion'];?></td>
-            <td><?php echo $row['verta_reflexion'];?></td>
-            <td><?php echo $row['verta_accion'];?></td>
+            <td><?php echo $row['vertdes_descrip']; ?></td>
+            <td><?php echo $row['vertres_resultado']; ?></td>
+            <td><?php echo $row['verta_explicacion']; ?></td>
+            <td><?php echo $row['verta_reflexion']; ?></td>
+            <td><?php echo $row['verta_accion']; ?></td>
             <td><a href='javascript: void(0);' onclick="$.ajax({
                             type: 'POST',
                             url: 'accion.php',
@@ -245,18 +250,18 @@ and vg.verg_codigo=$descrip");
                                     url: 'accion.php',
                                     data: {
                                         opcion: 'acttabanalisisgen',
-                                        codigo: $('#codproduc').val(),            
-                                        descrip: <?php echo $row['vertdes_codigo'];?>,                                                                    
+                                        codigo: $('#codproduc').val(),
+                                        descrip: <?php echo $row['vertdes_codigo']; ?>,
                                         ver: 1,
                                         dmn   : 352,
                                     },
                                     success: function(html) {
-                                        $('#tbanalisisasig').html(html);                                        
+                                        $('#tbanalisisasig').html(html);
                                     },
                                     error: function(xhr,msg,excep) {
                                         alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
                                     }
-                                });                                 
+                                });
                             },
                             error: function (xhr, msg, excep) {
                                 alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
@@ -266,6 +271,7 @@ and vg.verg_codigo=$descrip");
             </td>
         </tr>
 <?php
+
     }
 }
 //-----------------------------------------------------
@@ -322,8 +328,7 @@ left join rubro_clase rc on  vp.vertp_clasrubro=rc.ruc_codigo", "vp.vertp_rubro=
                     $row['ruc_descripcion'];
                 } else {
                     echo "Sin Clase";
-                }
-                ?>
+                } ?>
             </td>
             <td>
                 <?php echo $row['vertp_hasemb']; ?>
@@ -357,6 +362,7 @@ left join rubro_clase rc on  vp.vertp_clasrubro=rc.ruc_codigo", "vp.vertp_rubro=
                         return false">Eliminar</a> </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -383,8 +389,7 @@ left join rubro_clase rc on  vp.vertp_clasrubro=rc.ruc_codigo", "vp.vertp_rubro=
                     $row['ruc_descripcion'];
                 } else {
                     echo "Sin Clase";
-                }
-                ?>
+                } ?>
             </td>
             <td>
         <?php echo $row['vertp_hasemb']; ?>
@@ -418,6 +423,7 @@ left join rubro_clase rc on  vp.vertp_clasrubro=rc.ruc_codigo", "vp.vertp_rubro=
                         return false">Eliminar</a> </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -443,8 +449,7 @@ left join rubro_clase rc on  vp.vertp_clasrubro=rc.ruc_codigo", "vp.vertp_rubro=
                     $row['ruc_descripcion'];
                 } else {
                     echo "Sin Clase";
-                }
-                ?>
+                } ?>
             </td>
             <td>
                 <?php echo $row['vertp_hasemb']; ?>
@@ -456,6 +461,7 @@ left join rubro_clase rc on  vp.vertp_clasrubro=rc.ruc_codigo", "vp.vertp_rubro=
                         return false">Agregar</a> </td>
         </tr>
         <?php
+
     }
 }
 //-----------------------------------------------------
@@ -465,9 +471,9 @@ if ($opcion == 'acttabanalisis') {
     $codigo = $_POST['codigo'];
     $consulta = paraTodos::arrayConsulta("*", "vertice_analisis va, vertice_gen vg, rubro_tipo rt,rubros r, vertice_produccion vp
 left join  rubro_clase rc on rc.ruc_rucodigo=vp.vertp_clasrubro", "va.verta_verpcodigo=vp.vertp_codigo and vp.vertp_vergcodigo=vg.verg_codigo and vp.vertp_vergcodigo=$codigo and vp.vertp_rubro=r.ru_codigo and vp.vertp_tiprubro=rt.rut_codigo");
-    foreach($consulta as $row){
-?>
-        <tr class="itemtr"><td><?php echo $row['ru_descripcion'];?></td><td><?php echo $row['rut_descripcion'];?></td><td><?php echo $row['ruc_descripcion'];?></td><td><?php echo $row['verta_explicacion'];?></td><td><?php echo $row['verta_reflexion'];?></td><td><?php echo $row['verta_accion'];?></td><td><a href='javascript: void(0);' onclick="$.ajax({
+    foreach ($consulta as $row) {
+        ?>
+        <tr class="itemtr"><td><?php echo $row['ru_descripcion']; ?></td><td><?php echo $row['rut_descripcion']; ?></td><td><?php echo $row['ruc_descripcion']; ?></td><td><?php echo $row['verta_explicacion']; ?></td><td><?php echo $row['verta_reflexion']; ?></td><td><?php echo $row['verta_accion']; ?></td><td><a href='javascript: void(0);' onclick="$.ajax({
                             type: 'POST',
                             url: 'accion.php',
                             data: {
@@ -482,17 +488,17 @@ left join  rubro_clase rc on rc.ruc_rucodigo=vp.vertp_clasrubro", "va.verta_verp
                                     url: 'accion.php',
                                     data: {
                                         opcion: 'acttabanalisis',
-                                        codigo: <?php echo $codigo;?>,
+                                        codigo: <?php echo $codigo; ?>,
                                         ver: 1,
                                         dmn   : 352,
                                     },
                                     success: function(html) {
-                                        $('#tbanalisisasig').html(html);                                        
+                                        $('#tbanalisisasig').html(html);
                                     },
                                     error: function(xhr,msg,excep) {
                                         alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
                                     }
-                                });                                 
+                                });
                             },
                             error: function (xhr, msg, excep) {
                                 alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
@@ -500,6 +506,7 @@ left join  rubro_clase rc on rc.ruc_rucodigo=vp.vertp_clasrubro", "va.verta_verp
                         });
                         return false">Eliminar</a></td></tr>
 <?php
+
     }
 }
 //-----------------------------------------------------
@@ -531,7 +538,7 @@ if ($opcion == 'tablaconsul') {
         $consulta = paraTodos::arrayConsulta("*", "vertice_gen vg, vertice_produccion vp, rubro_tipo rt, rubros r
 left join rubro_clase rc on rc.ruc_rucodigo=r.ru_codigo", " vg.verg_codigo=vp.vertp_vergcodigo and vp.vertp_rubro=r.ru_codigo and vp.vertp_tiprubro=rt.rut_codigo
 and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_desde>='$desde' and verg_hasta<='$hasta'");
-      echo "<thead>
+        echo "<thead>
                 <tr role='row'>
                     <th class='sorting_asc' tabindex='0' aria-controls='dynamic-table-example-1' rowspan='1' colspan='1' aria-sort='ascending' aria-        label='Rendering engine: activate to sort column ascending' style='width: 176px;'>
                 Desde
@@ -547,7 +554,7 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_desde>='$desde'
                         </tr>
                     </thead>
                     <tbody>";
-        foreach($consulta as $row){
+        foreach ($consulta as $row) {
             echo "<tr class='gradeA even' role='row'>
                             <td class='sorting_1'>".$row['verg_desde']."</td>
                             <td>".$row['verg_hasta']."</td>
@@ -563,6 +570,7 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_desde>='$desde'
         echo "</tbody>";
     }
 }
+<<<<<<< Updated upstream
 //-----------------------------------------------------
 // Agrega las fechas de inspeccion al plan de siembra
 //-------------------------------------------------------
@@ -638,3 +646,6 @@ if ($opcion == 'deletefechains') {
     }
 }
 ?>
+=======
+?>
+>>>>>>> Stashed changes

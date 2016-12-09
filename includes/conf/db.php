@@ -14,18 +14,12 @@
     * @date        21/06/2009
     */
     // conexion a mysql
-    $user       = 'root';
-    $host       = 'localhost';
-    $passwd     = '';
-    $database   = 'gmas';
-    $port       = '3306';
-
-    class datosConexion {
-    //////////////////MYSQL///////////////////////
-    protected $servidorMy   =   "localhost";
-    protected $dbMy         =   "gmas";
-    protected $usuarioMy    =   "root";
-    protected $claveMy      =   "";
-    protected $puertoMy     =   "3306";
+    class datosConexion
+    {
+        //////////////////MYSQL///////////////////////
+        protected $servidorMy   =   "localhost";
+        protected $dbMy         =   "gmas";
+        protected $usuarioMy    =   "root";
+        protected $claveMy      =   "Gimonxd1991*";
+        protected $puertoMy     =   "3306";
     }
-?>
