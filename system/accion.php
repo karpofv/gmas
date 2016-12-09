@@ -130,6 +130,7 @@
           data: '&dmn=354&ver=9&act=2',
           success: function(html) {$('#notif').html(html);}
         });        
+        });     
 	</script>
     <script type="text/javascript">
         var cargando = '<center><img style="margin-top: 10px;height:30px;width:30px;" src="../assets-minified/images/spinner/loader-dark.gif" border="0"> Cargando...</center>';
