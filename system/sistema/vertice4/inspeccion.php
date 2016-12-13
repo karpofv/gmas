@@ -131,8 +131,8 @@ if ($submit) {
 // echo $detenidos;
 // echo $env_caracas;
 ?>
-<div class="col-md-12" style="background-color: #FFF">
-  <form  onsubmit="$.ajax({
+    <div class="col-md-12" style="background-color: #FFF">
+        <form onsubmit="$.ajax({
     type: 'POST',
     url: 'accion.php',
     data: {
@@ -175,247 +175,192 @@ if ($submit) {
       alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
     }
   });" action="javascript: void(0)" method="post">
-
-  <div id="mostrardatos">
-
-    <div class="content-box">
-      <h3 class="content-box-header bg-azul">
-        <i class="glyph-icon icon-pencil"></i> Datos Generales
-      </h3>
-      <div class="content-box-wrapper">
-        <div class="row col-lg-12">
-          <div class="form-group">
-            <div class="col-sm-2 col-md-2">
-              <label>Numero de denuncia</label>
-              <input type="number" id="num_denuncia" class="form-control">
-            </div>
-            <div class="col-sm-2 col-md-2">
-              <label>Estado</label>
-              <select id="estado" class="form-control">
-                <option value='0'>Seleccione un estado</option>
-                <?php
+            <div id="mostrardatos">
+                <div class="content-box">
+                    <h3 class="content-box-header bg-azul">
+                        <i class="glyph-icon icon-pencil"></i> Datos Generales
+                    </h3>
+                    <div class="content-box-wrapper">
+                        <div class="row col-lg-12">
+                            <div class="form-group">
+                                <div class="col-sm-2 col-md-2">
+                                    <label>Numero de denuncia</label>
+                                    <input type="number" id="num_denuncia" class="form-control">
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <label>Estado</label>
+                                    <select id="estado" class="form-control">
+                                        <option value='0'>Seleccione un estado</option>
+                                        <?php
                 combos::CombosSelect("1", "0", "id, idCiudad,Estado", 'c_estados', "id", "Estado", "Estado <> ''");
                 ?>
-              </select>
-              <select id="municipio" class="form-control">
-                <option ></option>
-              </select>
-              <select id="parroquia" class="form-control">
-                <option ></option>
-              </select>
-            </div>
-
-            <div class="col-sm-2 col-md-2">
-              <label>Alimentacion</label>
-              <select id="alimentacion" class="form-control">
-                <option value="#">Seleccione una opcion</option>
-                <?php
+                                    </select>
+                                    <select id="municipio" class="form-control">
+                                        <option></option>
+                                    </select>
+                                    <select id="parroquia" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <label>Alimentacion</label>
+                                    <select id="alimentacion" class="form-control">
+                                        <option value="#">Seleccione una opcion</option>
+                                        <?php
                 combos::CombosSelect('1', '0', 'b.id,b.nombre_alimentacion', 'alimentacion b', 'nombre_alimentacion', 'nombre_alimentacion', 'nombre_alimentacion <> ""');
                 ?>
-              </select>
-            </div>
-            <div class="col-sm-4 col-md-4">
-              <label>Actividad comercial</label>
-              <select id="actividad_comercial" class="form-control">
-                <option>Seleccione una opcion</option>
-                <?php
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <label>Actividad comercial</label>
+                                    <select id="actividad_comercial" class="form-control">
+                                        <option>Seleccione una opcion</option>
+                                        <?php
                 combos::CombosSelect('1', '0', 'a.id,a.nombre_actividad', 'actividad_comercial a', 'nombre_actividad', 'nombre_actividad', 'nombre_actividad <> ""');
                 ?>
-              </select>
-            </div>
-            <div class="col-md-2 col-sm-2">
-              <label>Tipo de operativo</label>
-              <select id="tipoOperativo" class="form-control">
-                <option value="#">Seleccione una opcion</option>
-                <?php
+                                    </select>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <label>Tipo de operativo</label>
+                                    <select id="tipoOperativo" class="form-control">
+                                        <option value="#">Seleccione una opcion</option>
+                                        <?php
                 combos::CombosSelect('1', '0', 'c.id,c.nombre_operativo', 'operativo c', 'id', 'nombre_operativo', 'nombre_operativo <>""');
                 ?>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-box">
-      <h3 class="content-box-header bg-azul">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-box">
+                    <h3 class="content-box-header bg-azul">
         <i class="glyph-icon icon-user"></i> Datos Personales
       </h3>
-      <div class="content-box-wrapper">
-        <div class="row col-lg-12">
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>RIF</strong>
-              <input type="text" class="form-control" id="rif" placeholder="">
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-
-              <strong>OBJETIVO</strong>
-              <input type="text" class="form-control" id="objetivo" placeholder="">
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-              <strong>DIRECCION</strong>
-              <textarea name="" id="direccion" placeholder="" rows="3" class="form-control textarea-sm"></textarea>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>FISCAL</strong>
-              <input type="text" class="form-control" id="fiscal" placeholder="">
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>TELEFONO</strong>
-              <input type="text" class="form-control" id="telefono" placeholder="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="content-box">
-      <h3 class="content-box-header bg-azul">
+                    <div class="content-box-wrapper">
+                        <div class="row col-lg-12">
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>RIF</strong>
+                                    <input type="text" class="form-control" id="rif" placeholder=""> </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>OBJETIVO</strong>
+                                    <input type="text" class="form-control" id="objetivo" placeholder=""> </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group"> <strong>DIRECCION</strong>
+                                    <textarea name="" id="direccion" placeholder="" rows="3" class="form-control textarea-sm"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>FISCAL</strong>
+                                    <input type="text" class="form-control" id="fiscal" placeholder=""> </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>TELEFONO</strong>
+                                    <input type="text" class="form-control" id="telefono" placeholder=""> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-box">
+                    <h3 class="content-box-header bg-azul">
         <i class="glyph-icon icon-user"></i> Datos Personales
-      </h3>
-      <div class="content-box-wrapper">
-        <div class="row col-lg-12">
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>N° ACTA DE INICIO</strong>
-              <input type="number" class="form-control" id="num_acta_inicio" placeholder="" required="Si no posee por favor coloque 0">
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <strong>FECHA EMISION DEL ACTA DE INICIO</strong>
-              <input id="fech_emi_acta" class="form-control" type="date" name="fecemi">
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>FECHA NOTIFICACION</strong>
-              <input id="fech_notificacion" class="form-control" type="date" name="fecnoti">
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <strong>FECHA DE DENUNCIA</strong>
-              <input id="fech_denuncia" class="form-control"  type="date" name="fecdenu">
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>FECHA DE REPORTE</strong>
-              <input id="fech_reporte" class="form-control" type="date" name="fecrep">
-            </div>
-          </div>
+                    </h3>
+                    <div class="content-box-wrapper">
+                        <div class="row col-lg-12">
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>N° ACTA DE INICIO</strong>
+                                    <input type="number" class="form-control" id="num_acta_inicio" placeholder="" required="Si no posee por favor coloque 0"> </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group"> <strong>FECHA EMISION DEL ACTA DE INICIO</strong>
+                                    <input id="fech_emi_acta" class="form-control" type="date" name="fecemi"> </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>FECHA NOTIFICACION</strong>
+                                    <input id="fech_notificacion" class="form-control" type="date" name="fecnoti"> </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group"> <strong>FECHA DE DENUNCIA</strong>
+                                    <input id="fech_denuncia" class="form-control" type="date" name="fecdenu"> </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>FECHA DE REPORTE</strong>
+                                    <input id="fech_reporte" class="form-control" type="date" name="fecrep"> </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row col-lg-12">
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group"> <strong>REPORTE</strong>
+                                    <textarea class="form-control" id="reporte" placeholder=""></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group"> <strong>INCIDENCA-INCUMPLIMIENTO</strong>
+                                    <select id="incump_inciden" name="inc_inc" class="form-control">
+                                        <option value="incidencia"> Incidencia </option>
+                                        <option value="incumplimiento"> Incumplimiento </option>
+                                        <option value="especulacion"> Especulacion </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>BASAMENTO LEGAL</strong>
+                                    <input id="baselegal" class="form-control" type="text" name="baselegal" value="ART "> </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group"> <strong>MEDIDA PREVENTIVA APLICADA</strong>
+                                    <select id="medida_prev_apli" name="med_prev" class="form-control">
+                                        <option value="ajuste"> AJUSTE INMEDIATO DE PRECIO </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ···································································· -->
+                        <div class="row col-lg-12">
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group"> <strong>OBSERVACIONES</strong>
+                                    <textarea class="form-control" id="observaciones" placeholder=""></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>UT</strong>
+                                    <input id="ut" class="form-control" type="text" name="ut"> </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>Bs.</strong>
+                                    <input id="bs" class="form-control" type="text" name="bs"> </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group"> <strong>REMISION A OTROS ORGANISMOS</strong>
+                                    <input id="remision" type="text" name="remision" class="form-control"> </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12">
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group"> <strong>NOMBRE DE LA FISCALIA (CUANDO SE REMITA AL MP)</strong>
+                                    <input id="nom_fiscalia" type="text" name="nom_fiscalia" class="form-control"> </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group"> <strong>DETENIDOS</strong>
+                                    <textarea name="detenidos" class="form-control" id="detenidos" placeholder=""></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group"> <strong>ENVIADO A CARACAS</strong>
+                                    <input id="env_caracas" class="form-control" type="text" name="env_caracas"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-lg-12">
+                        <input type="hidden" id="op" name="op" value="1">
+                        <button class="form-control" type="submit">Guardar Registro</button>
+                    </div>
+        </form>
         </div>
-        <br>
-
-        <div class="row col-lg-12">
-          <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-              <strong>REPORTE</strong>
-              <textarea  class="form-control" id="reporte" placeholder="" ></textarea>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <strong>INCIDENCA-INCUMPLIMIENTO</strong>
-              <select id="incump_inciden" name="inc_inc" class="form-control">
-                <option value="incidencia">
-                  Incidencia
-                </option>
-                <option value="incumplimiento">
-                  Incumplimiento
-                </option>
-                <option value="especulacion">
-                  Especulacion
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>BASAMENTO LEGAL</strong>
-              <input id="baselegal" class="form-control" type="text" name="baselegal" value="ART ">
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <strong>MEDIDA PREVENTIVA APLICADA</strong>
-              <select id="medida_prev_apli" name="med_prev" class="form-control">
-                <option value="ajuste">
-                  AJUSTE INMEDIATO  DE PRECIO
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <!-- ···································································· -->
-        <div class="row col-lg-12">
-          <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-              <strong>OBSERVACIONES</strong>
-              <textarea  class="form-control" id="observaciones" placeholder="" ></textarea>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>UT</strong>
-              <input id="ut" class="form-control" type="text" name="ut">
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>Bs.</strong>
-              <input id="bs" class="form-control" type="text" name="bs">
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-              <strong>REMISION A OTROS ORGANISMOS</strong>
-              <input id="remision" type="text" name="remision" class="form-control">
-            </div>
-          </div>
-        </div>
-        <div class="row col-lg-12">
-          <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-              <strong>NOMBRE DE LA FISCALIA (CUANDO SE REMITA AL MP)</strong>
-              <input id="nom_fiscalia" type="text" name="nom_fiscalia" class="form-control">
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <strong>DETENIDOS</strong>
-              <textarea  name="detenidos" class="form-control" id="detenidos" placeholder="" ></textarea>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2">
-            <div class="form-group">
-              <strong>ENVIADO A CARACAS</strong>
-              <input id="env_caracas" class="form-control" type="text" name="env_caracas">
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="row col-lg-12">
-        <input type="hidden" id="op" name="op" value="1">
-        <button class="form-control" type="submit" >Guardar Registro</button>
-      </div>
-    </form>
-  </div>
-
-
-  <?php if ($insertar) {
+        <?php if ($insertar) {
                     echo "<ul class='noty-wrapper' id='noty_bottom'>
     <li class='bg-green' style='cursor: pointer;'>
     <div class='noty_bar' id='noty_454273614135399300'>
@@ -427,58 +372,55 @@ if ($submit) {
     </ul>";
                 }
   ?>
-</div>
-<script>
-
-
-$("#tab-rub").css("display", "none");
-//$("#tab-analisis").css("display", "none");
-$("#tab-entes").css("display", "none");
-localStorage.setItem("count", "0");
-var count = localStorage.getItem('count');
-//+---------------------------------------------
-//Busca los municioios dependiendo del estado
-//-----------------------------------------------
-$("#estado").change(function () {
-  $.ajax({
-    type: 'POST',
-    url: 'accion.php',
-    data: {
-      opcion: 'aggmunicipio',
-      estado: $('#estado').val(),
-      ver: 1,
-      dmn: 352
-    },
-    success: function (html) {
-      $('#municipio').html("<option value='0'>Seleccione un Municipio</option>" + html);
-    },
-    error: function (xhr, msg, excep) {
-      alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
-    }
-  });
-  return false
-});
-
-//+---------------------------------------------
-//Busca las parroquias dependiendo del municipio
-//-----------------------------------------------
-$("#municipio").change(function () {
-  $.ajax({
-    type: 'POST',
-    url: 'accion.php',
-    data: {
-      opcion: 'aggparroquia',
-      municipio: $('#municipio').val(),
-      ver: 1,
-      dmn: 352
-    },
-    success: function (html) {
-      $('#parroquia').html("<option value='0'>Seleccione una parroquia</option>" + html);
-    },
-    error: function (xhr, msg, excep) {
-      alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
-    }
-  });
-  return false
-});
-</script>
+            </div>
+            <script>
+                $("#tab-rub").css("display", "none");
+                //$("#tab-analisis").css("display", "none");
+                $("#tab-entes").css("display", "none");
+                localStorage.setItem("count", "0");
+                var count = localStorage.getItem('count');
+                //+---------------------------------------------
+                //Busca los municioios dependiendo del estado
+                //-----------------------------------------------
+                $("#estado").change(function () {
+                    $.ajax({
+                        type: 'POST'
+                        , url: 'accion.php'
+                        , data: {
+                            opcion: 'aggmunicipio'
+                            , estado: $('#estado').val()
+                            , ver: 1
+                            , dmn: 352
+                        }
+                        , success: function (html) {
+                            $('#municipio').html("<option value='0'>Seleccione un Municipio</option>" + html);
+                        }
+                        , error: function (xhr, msg, excep) {
+                            alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
+                        }
+                    });
+                    return false
+                });
+                //+---------------------------------------------
+                //Busca las parroquias dependiendo del municipio
+                //-----------------------------------------------
+                $("#municipio").change(function () {
+                    $.ajax({
+                        type: 'POST'
+                        , url: 'accion.php'
+                        , data: {
+                            opcion: 'aggparroquia'
+                            , municipio: $('#municipio').val()
+                            , ver: 1
+                            , dmn: 352
+                        }
+                        , success: function (html) {
+                            $('#parroquia').html("<option value='0'>Seleccione una parroquia</option>" + html);
+                        }
+                        , error: function (xhr, msg, excep) {
+                            alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep);
+                        }
+                    });
+                    return false
+                });
+            </script>

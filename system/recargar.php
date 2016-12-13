@@ -133,6 +133,7 @@ if ($conexf != '') {
 @mysql_close();
 
 ?>
+
 <script type="text/javascript">
     var cargando = '<center><img style="margin-top: 10px;height:30px;width:30px;" src="../assets-minified/images/spinner/loader-dark.gif" border="0"> Cargando...</center>';
 </script>

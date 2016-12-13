@@ -48,7 +48,11 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#tbestab').DataTable();
+    $('#tbestab').DataTable({
+        "language": {
+            "url": "<?php echo $ruta_base;?>assets-minified/widgets/datatable/Spanish.json"
+        }
+    });
     $("#cerrarVentana").click(function () {
         $('[id^=ventanaVer]').html('');
         $.ajax({
@@ -61,6 +65,5 @@
             }
         });
     });
-    $('#tbestab').DataTable();
 </script>
 </div>

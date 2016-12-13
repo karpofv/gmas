@@ -525,7 +525,7 @@
                                                     type: 'POST',
                                                     url: 'accion.php',
                                                     data: {
-                                                        opcion: 'agginspeccion',
+                                                        opcion: 'aggfecinspeccion',
                                                         vertice: $('#vertices').val(),
                                                         fecha: $('#fechains').val(),
                                                         codigo: <?php echo $cod;?>,

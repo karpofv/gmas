@@ -2,7 +2,7 @@
 class Inspecciones {
     public function obtenerInspecciones($periodo){
         if ($periodo == 0){
-            $campos = 'vi.vertins_fechaains, e.est_nombre';
+            $campos = 'vi.vertins_fechaains,vi.vertins_fechains, e.est_nombre,est_codigo,vertins_vergcodigo,vertins_codigo,vertins_observ';
             $tabla = 'vertice_inspeccion vi, vertice_gen vg, establecimiento e';
             $condicion = "";            
             if ($_SESSION[usuario_perfil] != 1 && $_SESSION[usuario_perfil] != 9){
@@ -12,14 +12,23 @@ class Inspecciones {
             $ress_       = paraTodos::arrayConsulta("$campos","$tabla","$condicion");
             foreach ($ress_ as $key) {
             ?>
-                <a href="javascript:void(0)" id="itemins">
-                <a href="javascript:void(0)" id="itemins" onclick="$.ajax({
-          type: 'POST',
-          url:  'recargar.php',
-            ajaxSend: $('#ventanaVer').html(cargando),
-          data: '&dmn=355&ver=9&act=2',
-          success: function(html) {$('#ventanaVer').html(html);}
-        });">
+                <a href="javascript:void(0)" data-toggle="modal" data-target=".bs-example-modal-lg" id="itemins" onclick="$.ajax({
+                                            type: 'POST',
+                                            url: 'recargar.php',
+                                            ajaxSend: $('#ventanaVer').html(cargando),
+                                            data: {
+                                                dmn:355,
+                                                ver:9,
+                                                est:'<?php echo $key ['est_codigo']; ?>',
+                                                vertice:'<?php echo $key ['vertins_vergcodigo']; ?>',
+                                                ins:'<?php echo $key ['vertins_codigo']; ?>',
+                                                observ:'<?php echo $key ['vertins_observ'] ?>',
+                                                fecha:'<?php echo $key ['vertins_fechaains'] ?>',
+                                                fechai:'<?php echo $key ['vertins_fechains'] ?>'
+                                            },
+                                            success: function(html) {$('#ventanaVer').html(html); },
+                                            error: function(xhr,msg,excep) { alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep); }
+                                        }); return false;">
                     <li>
                         <span class="bg-red icon-notification glyph-icon icon-random"></span>
                         <span class="notification-text"><?php echo $key ['est_nombre'] ?></span>
@@ -28,11 +37,12 @@ class Inspecciones {
                         </div>
                     </li>
                 </a>
+                <a href="javascript:void(0)"><p class="bg-red text-center">Ignorar</p></a>
             <?php
             }            
         };
         if ($periodo == 1){
-            $campos = 'vi.vertins_fechaains, e.est_nombre';
+            $campos = 'vi.vertins_fechaains,vi.vertins_fechains, e.est_nombre,est_codigo,vertins_vergcodigo,vertins_codigo,vertins_observ';
             $tabla = 'vertice_inspeccion vi, vertice_gen vg, establecimiento e';
             $condicion = "";            
             if ($_SESSION[usuario_perfil] != 1 && $_SESSION[usuario_perfil] != 9){
@@ -42,15 +52,33 @@ class Inspecciones {
             $ress_       = paraTodos::arrayConsulta("$campos","$tabla","$condicion");
             foreach ($ress_ as $key) {
             ?>
-                <a href="javascript:void(0)" id="itemins" onclick="$.ajax({
-          type: 'POST',
-          url:  'recargar.php', 
-          data: '&dmn=355&ver=9&act=2',
-          success: function(html) {$('#ventanaVer').html(html);}
-        });"><li><span class="bg-azure icon-notification glyph-icon icon-random"></span> <span class="notification-text"><?php echo $key ['est_nombre'] ?></span>
-                <div class="notification-time"><?php echo $key ['vertins_fechaains'] ?><span class="glyph-icon icon-clock-o"></span></div>
-                </li>
+                <a href="javascript:void(0)" data-toggle="modal" data-target=".bs-example-modal-lg" id="itemins" onclick="$.ajax({
+                                            type: 'POST',
+                                            url: 'recargar.php',
+                                            ajaxSend: $('#ventanaVer').html(cargando),
+                                            data: {
+                                                dmn:355,
+                                                ver:9,
+                                                est:'<?php echo $key ['est_codigo'] ?>',
+                                                vertice:'<?php echo $key ['vertins_vergcodigo'] ?>',
+                                                ins:'<?php echo $key ['vertins_codigo'] ?>',
+                                                observ:'<?php echo $key ['vertins_observ'] ?>',
+                                                fecha:'<?php echo $key ['vertins_fechaains'] ?>',
+                                                fechai:'<?php echo $key ['vertins_fechains'] ?>'
+                                            },
+                                            success: function(html) {$('#ventanaVer').html(html); },
+                                            error: function(xhr,msg,excep) { alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep); }
+                                        }); return false;">
+                    <li>
+                        <span class="bg-azure icon-notification glyph-icon icon-random"></span>
+                        <span class="notification-text"><?php echo $key ['est_nombre'] ?></span>
+                        <div class="notification-time">
+                            <?php echo $key ['vertins_fechaains'] ?>
+                            <span class="glyph-icon icon-clock-o"></span>
+                        </div>
+                    </li>
                 </a>
+                <a href="javascript:void(0)"><p class="bg-green text-center">Ignorar</p></a>
             <?php
             }        
         }

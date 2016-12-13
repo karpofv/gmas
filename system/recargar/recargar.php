@@ -274,22 +274,40 @@ and vg.verg_codigo=$descrip");
 
     }
 }
-//-----------------------------------------------------
-// Eliminar el analisis seleccionado de un rubro de produccion del VERTICE 1
-//-------------------------------------------------------
-if ($opcion == 'deleteanalisisgen') {
-    $codigo = $_POST['codigo'];
-    paraTodos::arrayDelete("verta_codigo='$codigo'", "vertice_analisis");
-}
 //-------------------------------------------------------
 // VERTICE 1********************************************
 //-------------------------------------------------------
+//-----------------------------------------------------
+// Agrega los detalles de la inspeccion VERTICE 1
+//-------------------------------------------------------
+if ($opcion == 'agginspeccion') {
+    $codigo = $_POST['codigo'];
+    $produccion = $_POST['produccion'];
+    $sembrado = $_POST['sembrado'];
+    $cosechado = $_POST['cosechado'];
+    $observacion = $_POST['observacion'];
+    $fecha = $_POST['fecha'];
+    $update = paraTodos::arrayUpdate("vertins_fechains='$fecha', vertins_fechaing=CURRENT_DATE, vertins_observ='$observacion'", "vertice_inspeccion", "vertins_codigo='$codigo'");
+    $consulta = paraTodos::arrayConsultanum("verinsdet_codigo", "vertice_inspeccion_det", "verinsdet_vertinscodigo='$codigo' and verinsdet_vertpcodigo='$produccion'");
+    if($consulta>0){
+        $update = paraTodos::arrayUpdate("verinsdet_sembrado='$sembrado', verinsdet_cosechado='$cosechado'", "vertice_inspeccion_det", "verinsdet_vertinscodigo='$codigo' and verinsdet_vertpcodigo='$produccion'");
+    }else{
+        $insert = paraTodos::arrayInserte("verinsdet_vertinscodigo, verinsdet_vertpcodigo, verinsdet_sembrado, verinsdet_cosechado", "vertice_inspeccion_det", "'$codigo', '$produccion', '$sembrado', '$cosechado'");
+    }
+}
 //-----------------------------------------------------
 // Llena de forma automatica los tipos de rubro depende al rubro seleccionado
 //-------------------------------------------------------
 if ($opcion == 'aggtiprub') {
     $rubro = $_POST['rubro'];
     combos::CombosSelect('1', '0', 'rut_descripcion, rut_codigo', 'rubro_tipo rt, rubros r', 'rut_codigo', 'rut_descripcion', "r.ru_codigo=rt.rut_rucodigo and ru_codigo=$rubro");
+}
+//-----------------------------------------------------
+// Eliminar el analisis seleccionado de un rubro de produccion del VERTICE 1
+//-------------------------------------------------------
+if ($opcion == 'deleteanalisisgen') {
+    $codigo = $_POST['codigo'];
+    paraTodos::arrayDelete("verta_codigo='$codigo'", "vertice_analisis");
 }
 //-----------------------------------------------------
 // Llena de forma automatica las clases de rubro depende al tipo de rubro seleccionado
@@ -570,11 +588,10 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_desde>='$desde'
         echo "</tbody>";
     }
 }
-<<<<<<< Updated upstream
 //-----------------------------------------------------
 // Agrega las fechas de inspeccion al plan de siembra
 //-------------------------------------------------------
-if ($opcion == 'agginspeccion') {
+if ($opcion == 'aggfecinspeccion') {
     $codigo = $_POST['codigo'];
     $vertice = $_POST['vertice'];
     $fecha = $_POST['fecha'];
@@ -646,6 +663,3 @@ if ($opcion == 'deletefechains') {
     }
 }
 ?>
-=======
-?>
->>>>>>> Stashed changes
