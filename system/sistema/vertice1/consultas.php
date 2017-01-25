@@ -6,12 +6,9 @@
     if ($tipo =='Plan de Siembra') {
         $vertp_tipo = "SIEMBRA";
     }
-<<<<<<< Updated upstream
-=======
     if ($tipo =='Plan de Cosecha') {
         $vertp_tipo = "COSECHA";
     }
->>>>>>> Stashed changes
     $grafico = paraTodos::arrayConsulta("rut_descripcion, sum(vertp_hasemb) as vertp_hasemb, sum(vertp_hsem) as vertp_hsem ", "vertice_gen vg, vertice_produccion vp, rubro_tipo rt, rubros r
 left join rubro_clase rc on rc.ruc_rucodigo=r.ru_codigo", "vg.verg_codigo=vp.vertp_vergcodigo and vp.vertp_rubro=r.ru_codigo and vp.vertp_tiprubro=rt.rut_codigo
 and ru_clasificacion='VEGETAL' and vertp_tipo='$vertp_tipo' and verg_desde>='$_POST[desde]' and verg_hasta<='$_POST[hasta]' and verg_vertice='1' group by rut_descripcion");
@@ -155,7 +152,6 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_hasta<='$_POST[
 
                                 }
                             }
-<<<<<<< Updated upstream
                             if ($_POST['tipo']=="Inspecciones") {
                                 $consulta = paraTodos::arrayConsulta("*", "vertice_inspeccion vi, vertice_gen vg, establecimiento e", "vi.vertins_vertcodigo=1 and vi.vertins_vergcodigo=vg.verg_codigo and vg.verg_establec=e.est_codigo and vi.vertins_fechaains>='$_POST[desde]' and vi.vertins_fechaains<='$_POST[hasta]'");
                                 foreach($consulta as $rowconsul){
@@ -169,10 +165,7 @@ and ru_clasificacion='VEGETAL' and vertp_tipo='SIEMBRA' and verg_hasta<='$_POST[
                             <?php                                    
                                 }
                             }
-                            if ($_POST['tipo']=="Plan de Cosecha") {                            
-=======
                             if ($_POST['tipo']=="Plan de Cosecha") {
->>>>>>> Stashed changes
                                 $consulta = paraTodos::arrayConsulta("*", "vertice_gen vg, vertice_produccion vp, rubro_tipo rt, rubros r
 left join rubro_clase rc on rc.ruc_rucodigo=r.ru_codigo", "vg.verg_codigo=vp.vertp_vergcodigo and vp.vertp_rubro=r.ru_codigo and vp.vertp_tiprubro=rt.rut_codigo
 and ru_clasificacion='VEGETAL' and vertp_tipo='COSECHA' and verg_desde>='$_POST[desde]' and verg_hasta<='$_POST[hasta]' and verg_vertice='1'");

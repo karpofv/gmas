@@ -17,9 +17,9 @@
     class datosConexion
     {
         //////////////////MYSQL///////////////////////
-        protected $servidorMy   =   "localhost";
-        protected $dbMy         =   "gmas";
-        protected $usuarioMy    =   "root";
-        protected $claveMy      =   "Gimonxd1991*";
-        protected $puertoMy     =   "3306";
+    protected $servidorMy   =   "10.10.10.14";
+    protected $dbMy         =   "gmas";
+    protected $usuarioMy    =   "root";
+    protected $claveMy      =   "T1c_D3s4rr0ll0";
+    protected $puertoMy     =   "3306";
     }

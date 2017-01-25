@@ -9,8 +9,8 @@
     <script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/js-core/jquery-1.12.3.js"></script>
     <script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/js-core/jquery.dataTables.min.js"></script>
 <!-- NOTIFY -->
-<link rel="stylesheet" type="text/css" href="<?php echo $ruta_base; ?>assets-minified/themes/supina/js/noty-demo.js">
-<link rel="stylesheet" type="text/css" href="<?php echo $ruta_base; ?>assets-minified/themes/supina/js/noty.js">
+<script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/themes/supina/js/noty-demo.js"></script>
+<script type="text/javascript" src="<?php echo $ruta_base; ?>assets-minified/themes/supina/js/noty.js"></script>
 <!-- FIN NOTIFY -->
 
 

@@ -59,13 +59,14 @@ if ($idMenut == '') {
         $_SESSION[dmn] = $_GET[dmn];
     }
 }
-$ruta = "http://www.unellez.edu.ve/portal/servicios/siproma/sistema/fotos/" . $_SESSION[ci] . ".jpg";
+/*$ruta = "http://www.unellez.edu.ve/portal/servicios/siproma/sistema/fotos/" . $_SESSION[ci] . ".jpg";
 $urlexists = paraTodos::url_exists($ruta);
 if ($urlexists == 'true') {
-    $FOTO = "http://www.unellez.edu.ve/portal/servicios/siproma/sistema/fotos/" . $_SESSION[ci] . ".jpg";
+  $FOTO = "http://www.unellez.edu.ve/portal/servicios/siproma/sistema/fotos/" . $_SESSION[ci] . ".jpg";
 } else {
     $FOTO = "../assets-minified/images/icono_perfil.png";
-}
+}*/
+$FOTO = "../assets-minified/images/icono_perfil.png";
 $act = $_POST[act];
 if ($act == '') {
     $act = $_GET[act];
@@ -130,7 +131,6 @@ foreach ($res_ as $rownivel) {
 if ($conexf != '') {
     include_once ($conexf);	
 }
-@mysql_close();
 
 ?>
 

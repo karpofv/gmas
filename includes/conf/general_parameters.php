@@ -20,13 +20,13 @@ $foot_page      = ".:: Aplicaci&oacute;n Web ::: GMAS - ZODI Nº 32 ::.";
 $host_system    = "";
 $auth_table     = 'usuarios'; // Nombre de la tabla que contendra los datos de los usuarios
 $usuarios_sesion = 'the_name_session';
-$redir          = 'http://localhost/gmas/index.php';
-$ruta_base      = '//localhost/gmas/';
+$redir          = 'http://10.10.10.14/gmas/index.php';
+$ruta_base      = '//10.10.10.14/gmas/';
 // Configuracion de Modulos Activos en en Sistema (0:Inactivo, 1:Activo)
 $mod_moodle  = 0;
 //Mod Chat
 global $absolute_uri;
-$absolute_uri   = 'http://localhost/gmas/';
+$absolute_uri   = 'http://10.10.10.14/gmas/';
 $mod_chat       = 1;
 // Mensajes de error.
 $ruta_album = "";

@@ -2,17 +2,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
-?>
-<!-- PROBANDO GIMON -->
-
-<?php
 require_once 'includes/conexion.php';
 require_once 'includes/conf/auth.php';
 if ($_SESSION['usuario_nivel'] != 'Empleado') {
   header('Location: index.php?error_login=5');
   exit;
 }
-
 switch ($_SESSION['usuario_nivel']) {
   case 'Empleado':
   require_once 'includes/conexion.php';
