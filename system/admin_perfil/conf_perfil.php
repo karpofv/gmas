@@ -16,33 +16,31 @@
             $consulta_eliminar=paratodos::arrayDelete("IdPerfil=$idperfil","perfiles_det");
             $consulta_eliminar=paratodos::arrayDelete("CodPerfil=$idperfil","perfiles");
         } else {
- 	      echo "<h3 class=\"error\">El perfil no puede ser eliminado porque se encuentra en uso</h3>";
+            echo "<h3 class=\"error\">El perfil no puede ser eliminado porque se encuentra en uso</h3>";
         }
     }
 	/*Insertar un nuevo perfil*/
 	if ($_POST['nuevoperfil']<>'') {
 		//Si el texto tiene algo es porque se va a crear un nuevo perfil
-		$indicemenu=$_POST['indicemenu'];	
 		$nuevoperfil=$_POST['nuevoperfil'];
-                //Validar si el perfil solapa a otro
-		if ($nuevoperfil<>'') {		
-                    $consulta_nombre_perfil=paraTodos::arrayConsultanum("Nombre","perfiles","Nombre like '%".$nuevoperfil."%'");
-                    if ($consulta_nombre_perfil> 0) {
-                        die ('<h3 class="error">El nombre de perfil seleccionado no puede usarse, intente con otro</h3>');
-                    }
-                    $consulta_nombre_perfil=null;
+        //Validar si el perfil solapa a otro
+		if ($nuevoperfil<>'') {
+            $consulta_nombre_perfil=paraTodos::arrayConsultanum("Nombre","perfiles","Nombre like '%".$nuevoperfil."%'");
+            if ($consulta_nombre_perfil> 0) {
+                die ('<h3 class="error">El nombre de perfil seleccionado no puede usarse, intente con otro</h3>');
+            }
+            $consulta_nombre_perfil=null;
 		}
 		if ($nuevoperfil<>'') {
 			$id=time();
 			$insertar_perfil=paraTodos::arrayInserte("CodPerfil,Nombre","perfiles","'0','$nuevoperfil'");
-		}
-		
+		}		
     }
 ?>
-   <script>
-</script>
+    <script>
+    </script>
     <form onsubmit="
-                   $.ajax({ 
+                   $.ajax({
                    	type: 'POST', 
                    	url: 'accion.php',
                     data: {
@@ -56,8 +54,7 @@
                     error: function(xhr,msg,excep) { alert('Error Status ' + xhr.status + ': ' + msg + '/ ' + excep); }
                     }); return false" action="javascript: void(0);" method="post" name="enviar">
         <div class="container" style="margin: 57px auto 0 auto;background: #FFFFFF;border: 1px solid #DDDDDD;width: 60%;">
-            <div style="color: #A50000;width: 100%;padding: 8px 0px 8px 0px; text-align: center;height: 45px;font-weight: bold;overflow: hidden;font-size: 11pt;border: 1px solid #DDDDDD;background: #FAFAFA;;"> Administraci&oacute;n de Perfiles 
-            </div>
+            <div style="color: #A50000;width: 100%;padding: 8px 0px 8px 0px; text-align: center;height: 45px;font-weight: bold;overflow: hidden;font-size: 11pt;border: 1px solid #DDDDDD;background: #FAFAFA;;"> Administraci&oacute;n de Perfiles </div>
             <div style="height: auto;overflow: hidden;padding: 10px;">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Perfil</label>

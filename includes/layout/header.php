@@ -35,7 +35,7 @@
                             </div>
                             <div class="divider"></div>
                             <div class="pad5A button-pane button-pane-alt text-center">
-                                <a href="../../index.php?logaut=1" class="btn display-block font-normal btn-danger"> <i class="glyph-icon icon-power-off"></i> Logout </a>
+                                <a href="<?php echo $ruta_base;?>index.php?logaut=1" class="btn display-block font-normal btn-danger"> <i class="glyph-icon icon-power-off"></i>Salir</a>
                             </div>
                         </div>
                     </div>
